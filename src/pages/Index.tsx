@@ -9,14 +9,14 @@ const LocationCard = ({
   title,
   name,
   address,
-  mapsUrl,
-}: {
-  title: string;
-  name: string;
-  address: string;
-  mapsUrl: string;
-}) => (
-  <div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
+  mapsUrl
+
+
+
+
+
+}: {title: string;name: string;address: string;mapsUrl: string;}) =>
+<div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
     <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-2">
       {title}
     </p>
@@ -25,16 +25,16 @@ const LocationCard = ({
       {address}
     </p>
     <a
-      href={mapsUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
-    >
+    href={mapsUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
+
       <MapPin size={14} />
       Como chegar
     </a>
-  </div>
-);
+  </div>;
+
 
 const Index = () => {
   return (
@@ -48,12 +48,12 @@ const Index = () => {
               controls
               playsInline
               preload="metadata"
-              poster=""
-            >
+              poster="">
+
               <source
                 src="https://keslley-lima.github.io/bms-ads/Casamento.mp4"
-                type="video/mp4"
-              />
+                type="video/mp4" />
+
             </video>
           </div>
         </FadeInSection>
@@ -75,7 +75,7 @@ const Index = () => {
           </h1>
           <p className="font-serif-elegant text-2xl text-muted-foreground my-1">&</p>
           <h1 className="font-script text-5xl sm:text-6xl md:text-7xl text-gold leading-tight">
-            Keslley
+            Keslley Henrique  
           </h1>
         </FadeInSection>
       </section>
@@ -109,16 +109,16 @@ const Index = () => {
               title="Cerimônia Civil"
               name="Cartório de Registro Civil Uberlândia"
               address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
-              mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111"
-            />
+              mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
+
           </FadeInSection>
           <FadeInSection className="flex-1" delay={0.25}>
             <LocationCard
               title="Recepção"
               name="Churrasqueira Potência do Sul"
               address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
-              mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia"
-            />
+              mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
+
           </FadeInSection>
         </div>
       </section>
@@ -147,8 +147,8 @@ const Index = () => {
       </footer>
 
       <MusicButton />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;

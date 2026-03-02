@@ -1,6 +1,8 @@
+import { useState } from "react";
 import FadeInSection from "@/components/FadeInSection";
 import RsvpForm from "@/components/RsvpForm";
-import MusicButton from "@/components/MusicButton";
+import MusicButton, { startMusic } from "@/components/MusicButton";
+import WelcomeScreen from "@/components/WelcomeScreen";
 import { MapPin } from "lucide-react";
 
 const Divider = () => <div className="gold-divider my-10" />;
@@ -9,27 +11,34 @@ const LocationCard = ({
   title,
   name,
   address,
-  mapsUrl
-
-
-
-
-
-}: {title: string;name: string;address: string;mapsUrl: string;}) =>
+  mapsUrl,
+  time,
+  note,
+}: {title: string; name: string; address: string; mapsUrl: string; time?: string; note?: string;}) =>
 <div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
     <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-2">
       {title}
     </p>
     <p className="font-serif-elegant text-lg font-semibold text-foreground mb-1">{name}</p>
-    <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-4">
+    <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
       {address}
     </p>
+    {time && (
+      <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
+        {time}
+      </p>
+    )}
+    {note && (
+      <p className="font-sans-elegant text-[11px] italic leading-relaxed text-muted-foreground mb-4">
+        {note}
+      </p>
+    )}
+    {!note && !time && <div className="mb-2" />}
     <a
     href={mapsUrl}
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
-
+    className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground mt-2">
       <MapPin size={14} />
       Como chegar
     </a>
@@ -37,7 +46,16 @@ const LocationCard = ({
 
 
 const Index = () => {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  const handleEnter = () => {
+    startMusic();
+    setShowWelcome(false);
+  };
+
   return (
+    <>
+    <WelcomeScreen visible={showWelcome} onEnter={handleEnter} />
     <div className="min-h-screen bg-cream">
       {/* Hero - Video */}
       <section className="relative flex flex-col items-center px-4 pt-6 pb-8">
@@ -109,6 +127,7 @@ const Index = () => {
               title="Cerimônia Civil"
               name="Cartório de Registro Civil Uberlândia"
               address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
+              time="Início às 10h15"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
 
           </FadeInSection>
@@ -117,6 +136,8 @@ const Index = () => {
               title="Recepção"
               name="Churrasqueira Potência do Sul"
               address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
+              time="Início às 12h"
+              note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
 
           </FadeInSection>
@@ -147,7 +168,8 @@ const Index = () => {
       </footer>
 
       <MusicButton />
-    </div>);
+    </div>
+    </>);
 
 };
 

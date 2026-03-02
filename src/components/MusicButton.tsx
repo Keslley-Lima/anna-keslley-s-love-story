@@ -1,23 +1,46 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Music, VolumeX } from "lucide-react";
 
 const MUSIC_URL = "https://keslley-lima.github.io/bms-ads/music.mp3";
 
+let sharedAudio: HTMLAudioElement | null = null;
+
+const getAudio = () => {
+  if (!sharedAudio) {
+    sharedAudio = new Audio(MUSIC_URL);
+    sharedAudio.loop = true;
+  }
+  return sharedAudio;
+};
+
+export const startMusic = () => {
+  getAudio().play().catch(() => {});
+};
+
 const MusicButton = () => {
   const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = getAudio();
+    const handlePlay = () => setPlaying(true);
+    const handlePause = () => setPlaying(false);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    // Sync initial state
+    setPlaying(!audio.paused);
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+    };
+  }, []);
 
   const toggle = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(MUSIC_URL);
-      audioRef.current.loop = true;
-    }
+    const audio = getAudio();
     if (playing) {
-      audioRef.current.pause();
+      audio.pause();
     } else {
-      audioRef.current.play().catch(() => {});
+      audio.play().catch(() => {});
     }
-    setPlaying(!playing);
   };
 
   return (

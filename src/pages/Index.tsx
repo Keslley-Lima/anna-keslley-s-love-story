@@ -13,7 +13,6 @@ const LocationCard = ({
   time,
   note,
 }: {title: string; name: string; address: string; mapsUrl: string; time?: string; note?: string;}) =>
-}: {title: string; name: string; address: string; mapsUrl: string; time?: string; note?: string;}) =>
 <div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
     <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-2">
       {title}

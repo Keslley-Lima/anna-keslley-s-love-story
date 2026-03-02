@@ -1,6 +1,8 @@
+import { useState } from "react";
 import FadeInSection from "@/components/FadeInSection";
 import RsvpForm from "@/components/RsvpForm";
-import MusicButton from "@/components/MusicButton";
+import MusicButton, { startMusic } from "@/components/MusicButton";
+import WelcomeScreen from "@/components/WelcomeScreen";
 import { MapPin } from "lucide-react";
 
 const Divider = () => <div className="gold-divider my-10" />;
@@ -116,6 +118,7 @@ const Index = () => {
               title="Cerimônia Civil"
               name="Cartório de Registro Civil Uberlândia"
               address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
+              time="Início às 10h15"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
 
           </FadeInSection>
@@ -124,6 +127,8 @@ const Index = () => {
               title="Recepção"
               name="Churrasqueira Potência do Sul"
               address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
+              time="Início às 12h"
+              note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
 
           </FadeInSection>

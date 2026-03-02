@@ -1,46 +1,46 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Music, VolumeX } from "lucide-react";
 
 const MUSIC_URL = "https://keslley-lima.github.io/bms-ads/music.mp3";
 
-// Allow external control to start playing
-export const createMusicController = () => {
-  let audioInstance: HTMLAudioElement | null = null;
-  let onStateChange: ((playing: boolean) => void) | null = null;
+let sharedAudio: HTMLAudioElement | null = null;
 
-  return {
-    play: () => {
-      if (!audioInstance) {
-        audioInstance = new Audio(MUSIC_URL);
-        audioInstance.loop = true;
-      }
-      audioInstance.play().catch(() => {});
-      onStateChange?.(true);
-    },
-    getAudio: () => audioInstance,
-    setOnStateChange: (cb: (playing: boolean) => void) => {
-      onStateChange = cb;
-    },
-  };
+const getAudio = () => {
+  if (!sharedAudio) {
+    sharedAudio = new Audio(MUSIC_URL);
+    sharedAudio.loop = true;
+  }
+  return sharedAudio;
 };
 
-export const musicController = createMusicController();
+export const startMusic = () => {
+  getAudio().play().catch(() => {});
+};
 
 const MusicButton = () => {
   const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = getAudio();
+    const handlePlay = () => setPlaying(true);
+    const handlePause = () => setPlaying(false);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    // Sync initial state
+    setPlaying(!audio.paused);
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+    };
+  }, []);
 
   const toggle = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(MUSIC_URL);
-      audioRef.current.loop = true;
-    }
+    const audio = getAudio();
     if (playing) {
-      audioRef.current.pause();
+      audio.pause();
     } else {
-      audioRef.current.play().catch(() => {});
+      audio.play().catch(() => {});
     }
-    setPlaying(!playing);
   };
 
   return (

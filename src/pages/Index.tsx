@@ -3,6 +3,8 @@ import FadeInSection from "@/components/FadeInSection";
 import RsvpForm from "@/components/RsvpForm";
 import MusicButton, { startMusic } from "@/components/MusicButton";
 import WelcomeScreen from "@/components/WelcomeScreen";
+import HeroSlideshow from "@/components/HeroSlideshow";
+import Countdown from "@/components/Countdown";
 import { MapPin } from "lucide-react";
 
 const Divider = () => <div className="gold-divider my-10" />;
@@ -57,23 +59,10 @@ const Index = () => {
     <>
     <WelcomeScreen visible={showWelcome} onEnter={handleEnter} />
     <div className="min-h-screen bg-cream">
-      {/* Hero - Video */}
+      {/* Hero - Slideshow */}
       <section className="relative flex flex-col items-center px-4 pt-6 pb-8">
         <FadeInSection className="w-full max-w-lg">
-          <div className="overflow-hidden rounded-2xl shadow-xl">
-            <video
-              className="w-full aspect-[9/16] object-cover"
-              controls
-              playsInline
-              preload="metadata"
-              poster="">
-
-              <source
-                src="https://keslley-lima.github.io/bms-ads/Casamento.mp4"
-                type="video/mp4" />
-
-            </video>
-          </div>
+          <HeroSlideshow />
         </FadeInSection>
 
         <FadeInSection delay={0.3} className="mt-6 text-center">
@@ -106,9 +95,10 @@ const Index = () => {
           <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-2">
             Salve a data
           </p>
-          <p className="font-serif-elegant text-3xl sm:text-4xl font-light text-foreground">
+          <p className="font-serif-elegant text-3xl sm:text-4xl font-light text-foreground mb-6">
             17 de Abril de 2026
           </p>
+          <Countdown />
         </FadeInSection>
       </section>
 
@@ -129,7 +119,6 @@ const Index = () => {
               address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
               time="Início às 10h15"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
-
           </FadeInSection>
           <FadeInSection className="flex-1" delay={0.25}>
             <LocationCard
@@ -139,7 +128,6 @@ const Index = () => {
               time="Início às 12h"
               note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"
               mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
-
           </FadeInSection>
         </div>
       </section>

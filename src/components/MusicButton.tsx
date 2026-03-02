@@ -9,12 +9,22 @@ const getAudio = () => {
   if (!sharedAudio) {
     sharedAudio = new Audio(MUSIC_URL);
     sharedAudio.loop = true;
+    sharedAudio.volume = 0.5;
+    sharedAudio.preload = "auto";
   }
   return sharedAudio;
 };
 
 export const startMusic = () => {
-  getAudio().play().catch(() => {});
+  const audio = getAudio();
+  // Reset to start to ensure clean playback
+  audio.currentTime = 0;
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.catch((err) => {
+      console.warn("Audio play failed:", err);
+    });
+  }
 };
 
 const MusicButton = () => {

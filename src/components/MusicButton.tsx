@@ -3,6 +3,29 @@ import { Music, VolumeX } from "lucide-react";
 
 const MUSIC_URL = "https://keslley-lima.github.io/bms-ads/music.mp3";
 
+// Allow external control to start playing
+export const createMusicController = () => {
+  let audioInstance: HTMLAudioElement | null = null;
+  let onStateChange: ((playing: boolean) => void) | null = null;
+
+  return {
+    play: () => {
+      if (!audioInstance) {
+        audioInstance = new Audio(MUSIC_URL);
+        audioInstance.loop = true;
+      }
+      audioInstance.play().catch(() => {});
+      onStateChange?.(true);
+    },
+    getAudio: () => audioInstance,
+    setOnStateChange: (cb: (playing: boolean) => void) => {
+      onStateChange = cb;
+    },
+  };
+};
+
+export const musicController = createMusicController();
+
 const MusicButton = () => {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);

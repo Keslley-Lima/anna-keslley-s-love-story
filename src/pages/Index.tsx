@@ -15,21 +15,31 @@ const LocationCard = ({
 
 
 
-}: {title: string;name: string;address: string;mapsUrl: string;}) =>
+}: {title: string; name: string; address: string; mapsUrl: string; time?: string; note?: string;}) =>
 <div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
     <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-2">
       {title}
     </p>
     <p className="font-serif-elegant text-lg font-semibold text-foreground mb-1">{name}</p>
-    <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-4">
+    <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
       {address}
     </p>
+    {time && (
+      <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
+        {time}
+      </p>
+    )}
+    {note && (
+      <p className="font-sans-elegant text-[11px] italic leading-relaxed text-muted-foreground mb-4">
+        {note}
+      </p>
+    )}
+    {!note && !time && <div className="mb-2" />}
     <a
     href={mapsUrl}
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
-
+    className="inline-flex items-center gap-1.5 rounded-full border border-gold px-5 py-2 font-sans-elegant text-xs font-medium uppercase tracking-widest text-gold transition-all duration-300 hover:bg-primary hover:text-primary-foreground mt-2">
       <MapPin size={14} />
       Como chegar
     </a>

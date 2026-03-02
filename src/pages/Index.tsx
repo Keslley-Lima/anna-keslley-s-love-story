@@ -46,7 +46,16 @@ const LocationCard = ({
 
 
 const Index = () => {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  const handleEnter = () => {
+    startMusic();
+    setShowWelcome(false);
+  };
+
   return (
+    <>
+    <WelcomeScreen visible={showWelcome} onEnter={handleEnter} />
     <div className="min-h-screen bg-cream">
       {/* Hero - Video */}
       <section className="relative flex flex-col items-center px-4 pt-6 pb-8">

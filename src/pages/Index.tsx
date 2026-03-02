@@ -168,7 +168,8 @@ const Index = () => {
       </footer>
 
       <MusicButton />
-    </div>);
+    </div>
+    </>);
 
 };
 

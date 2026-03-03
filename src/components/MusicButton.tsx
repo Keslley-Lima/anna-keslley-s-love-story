@@ -1,13 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Music, VolumeX } from "lucide-react";
-
-const MUSIC_URL = "https://keslley-lima.github.io/bms-ads/music.mp3";
 
 let sharedAudio: HTMLAudioElement | null = null;
 
 const getAudio = () => {
   if (!sharedAudio) {
-    sharedAudio = new Audio(MUSIC_URL);
+    sharedAudio = new Audio("/music.mp3");
     sharedAudio.loop = true;
     sharedAudio.volume = 0.5;
     sharedAudio.preload = "auto";
@@ -17,7 +15,6 @@ const getAudio = () => {
 
 export const startMusic = () => {
   const audio = getAudio();
-  // Reset to start to ensure clean playback
   audio.currentTime = 0;
   const playPromise = audio.play();
   if (playPromise !== undefined) {
@@ -36,7 +33,6 @@ const MusicButton = () => {
     const handlePause = () => setPlaying(false);
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
-    // Sync initial state
     setPlaying(!audio.paused);
     return () => {
       audio.removeEventListener("play", handlePlay);

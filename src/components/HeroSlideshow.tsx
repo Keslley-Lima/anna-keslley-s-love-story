@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import couple1 from "@/assets/couple-1.jpg";
 import couple2 from "@/assets/couple-2.jpg";
 import couple3 from "@/assets/couple-3.jpg";
+import couple4 from "@/assets/couple-4.jpg";
+import couple5 from "@/assets/couple-5.jpg";
+import couple6 from "@/assets/couple-6.jpg";
 
-const images = [couple1, couple2, couple3];
-const INTERVAL = 5000;
+const images = [couple1, couple2, couple3, couple4, couple5, couple6];
+const INTERVAL = 8000;
 
 const HeroSlideshow = () => {
   const [current, setCurrent] = useState(0);
@@ -23,10 +26,10 @@ const HeroSlideshow = () => {
           key={i}
           src={src}
           alt={`Anna Flávia & Keslley - Foto ${i + 1}`}
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-[2500ms] ease-in-out"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-[4000ms] ease-in-out"
           style={{
             opacity: current === i ? 1 : 0,
-            transform: current === i ? "scale(1.05)" : "scale(1)",
+            transform: current === i ? "scale(1.03)" : "scale(1)",
           }}
         />
       ))}

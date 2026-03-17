@@ -65,7 +65,7 @@ export default {
         },
       },
       fontFamily: {
-        script: ["Great Vibes", "cursive"],
+        script: ["Alex Brush", "cursive"],
         serif: ["Cormorant Garamond", "serif"],
         sans: ["Montserrat", "sans-serif"],
       },

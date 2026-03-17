@@ -65,7 +65,7 @@ export default {
         },
       },
       fontFamily: {
-        script: ["Pinyon Script", "cursive"],
+        script: ["Great Vibes", "cursive"],
         serif: ["Cormorant Garamond", "serif"],
         sans: ["Montserrat", "sans-serif"],
       },

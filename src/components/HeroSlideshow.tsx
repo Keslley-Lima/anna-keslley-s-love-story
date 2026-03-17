@@ -43,6 +43,7 @@ const HeroSlideshow = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-[4000ms] ease-in-out"
             style={{
               opacity: current === i ? 1 : 0,
+              zIndex: current === i ? 2 : 1,
               transform: current === i ? "scale(1.03)" : "scale(1)",
             }}
           />
@@ -52,12 +53,11 @@ const HeroSlideshow = () => {
             ref={videoRef}
             src={slide.src}
             muted
-            autoPlay
-            loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover transition-all duration-[4000ms] ease-in-out"
             style={{
               opacity: current === i ? 1 : 0,
+              zIndex: current === i ? 2 : 1,
               transform: current === i ? "scale(1.03)" : "scale(1)",
             }}
           />

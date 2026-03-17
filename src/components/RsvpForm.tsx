@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const RsvpForm = () => {
   const [name, setName] = useState("");
   const [guests, setGuests] = useState("1");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
       toast.error("Por favor, insira seu nome.");
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.from("convidados").insert({
+      nome: name.trim(),
+      acompanhantes: parseInt(guests, 10),
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Ocorreu um erro. Tente novamente.");
       return;
     }
     setSubmitted(true);
@@ -21,7 +33,7 @@ const RsvpForm = () => {
       <div className="text-center py-10">
         <p className="font-script text-3xl text-gold mb-2">Obrigado!</p>
         <p className="font-sans-elegant text-muted-foreground text-sm">
-          Sua presença foi confirmada com sucesso.
+          Sua presença foi confirmada com sucesso! Estamos muito felizes.
         </p>
       </div>
     );
@@ -61,9 +73,10 @@ const RsvpForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full rounded-md bg-primary px-6 py-3 font-sans-elegant text-sm font-semibold uppercase tracking-widest text-primary-foreground transition-all duration-300 hover:brightness-110 active:scale-[0.98]"
+        disabled={loading}
+        className="w-full rounded-md bg-primary px-6 py-3 font-sans-elegant text-sm font-semibold uppercase tracking-widest text-primary-foreground transition-all duration-300 hover:brightness-110 active:scale-[0.98] disabled:opacity-60"
       >
-        Confirmar Presença
+        {loading ? "Enviando..." : "Confirmar Presença"}
       </button>
     </form>
   );

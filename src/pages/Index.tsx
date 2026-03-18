@@ -123,7 +123,7 @@ const Index = () => {
           <FadeInSection className="flex-1" delay={0.25}>
             <LocationCard
                 title="Recepção"
-                name="Churrasqueira Potência do Sul"
+                name="Churrascaria Potência do Sul"
                 address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
                 time="Início às 12h"
                 note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"

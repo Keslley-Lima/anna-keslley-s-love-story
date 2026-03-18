@@ -15,8 +15,8 @@ const LocationCard = ({
   address,
   mapsUrl,
   time,
-  note,
-}: {title: string; name: string; address: string; mapsUrl: string; time?: string; note?: string;}) =>
+  note
+}: {title: string;name: string;address: string;mapsUrl: string;time?: string;note?: string;}) =>
 <div className="flex-1 rounded-xl bg-cream-dark p-6 text-center">
     <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-2">
       {title}
@@ -25,16 +25,16 @@ const LocationCard = ({
     <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
       {address}
     </p>
-    {time && (
-      <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
+    {time &&
+  <p className="font-sans-elegant text-xs leading-relaxed text-muted-foreground mb-2">
         {time}
       </p>
-    )}
-    {note && (
-      <p className="font-sans-elegant text-[11px] italic leading-relaxed text-muted-foreground mb-4">
+  }
+    {note &&
+  <p className="font-sans-elegant text-[11px] italic leading-relaxed text-muted-foreground mb-4">
         {note}
       </p>
-    )}
+  }
     {!note && !time && <div className="mb-2" />}
     <a
     href={mapsUrl}
@@ -114,20 +114,20 @@ const Index = () => {
         <div className="mx-auto flex max-w-lg flex-col gap-4 sm:flex-row">
           <FadeInSection className="flex-1" delay={0.1}>
             <LocationCard
-              title="Cerimônia Civil"
-              name="Cartório de Registro Civil Uberlândia"
-              address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
-              time="Início às 10h15"
-              mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
+                title="Cerimônia Civil"
+                name="Cartório de Registro Civil Uberlândia"
+                address="Avenida Anselmo Alves dos Santos, 1111 – 4° Piso – Pátio Sabiá – Uberlândia-MG"
+                time="Início às 10h15"
+                mapsUrl="https://www.google.com/maps/search/?api=1&query=Cartório+de+Registro+Civil+Uberlândia+Avenida+Anselmo+Alves+dos+Santos+1111" />
           </FadeInSection>
           <FadeInSection className="flex-1" delay={0.25}>
             <LocationCard
-              title="Recepção"
-              name="Churrasqueira Potência do Sul"
-              address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
-              time="Início às 12h"
-              note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"
-              mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
+                title="Recepção"
+                name="Churrasqueira Potência do Sul"
+                address="Av. Rondon Pacheco, 4845 - Nossa Sra. Aparecida, Uberlândia - MG"
+                time="Início às 12h"
+                note="Para celebrarmos juntos este momento tão especial, optamos por um almoço por adesão, onde cada convidado será responsável pelo seu próprio consumo. Ficaremos honrados em ter você dividindo essa alegria conosco!"
+                mapsUrl="https://www.google.com/maps/search/?api=1&query=Churrasqueira+Potência+do+Sul+Av+Rondon+Pacheco+4845+Uberlândia" />
           </FadeInSection>
         </div>
       </section>
@@ -138,8 +138,8 @@ const Index = () => {
       <section className="px-4 pb-24">
         <FadeInSection>
           <p className="font-sans-elegant text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-2 text-center">
-            RSVP
-          </p>
+
+            </p>
           <p className="font-serif-elegant text-3xl text-center text-foreground mb-8">
             Confirme sua presença
           </p>
